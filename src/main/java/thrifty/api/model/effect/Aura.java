@@ -1,13 +1,15 @@
 package thrifty.api.model.effect;
 
+import java.util.Set;
+
 public class Aura extends NamedEffect {
-	private Statistic modifier;
+	private Set<Statistic> modifiers;
 	
-	public Statistic modifier() {
-		return modifier;
+	public Set<Statistic> modifiers() {
+		return modifiers;
 	}
 	
-	public void modifier(Statistic modifier) {
-		this.modifier = modifier;
+	public void modifier(Set<Statistic> modifiers) {
+		this.modifiers = modifiers;
 	}
 }

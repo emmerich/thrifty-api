@@ -1,0 +1,21 @@
+Raw html: http://leagueoflegends.wikia.com/api.php?format=json&action=parse&page=Infinity%20Edge
+
+Wiki page: http://leagueoflegends.wikia.com/api.php?format=json&action=query&titles=Infinity%20Edge&prop=revisions&rvprop=content
+  Under the page, there's an info box which passes the effects parameter. This contains the item's effects
+
+  
+  
+  longsword = 400/10 = 40
+  pickaxe = 875/25 = 35
+  bfsword = 1550/45 = 34.44
+  
+  brutalizer =1337/25 = 53.48
+   + cdr
+     arp
+  
+  average = 36.48
+  
+  
+  
+  109.4444
+  
