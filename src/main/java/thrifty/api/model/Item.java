@@ -1,5 +1,6 @@
 package thrifty.api.model;
 
+import java.util.List;
 import java.util.Set;
 
 import thrifty.api.model.effect.Effect;
@@ -11,7 +12,7 @@ public class Item extends PersistedEntity {
 	private Tier tier;
 	private Set<Effect> effects;
 	
-	private Set<Item> components;
+	private List<Item> components;
 	
 	private GoldValue cost;
 	private GoldValue sellValue;
@@ -42,11 +43,11 @@ public class Item extends PersistedEntity {
 		this.effects = effects;
 	}
 
-	public Set<Item> components() {
+	public List<Item> components() {
 		return components;
 	}
 
-	public void components(Set<Item> components) {
+	public void components(List<Item> components) {
 		this.components = components;
 	}
 
