@@ -6,4 +6,17 @@
   <packaging>war</packaging>
   <name>Thrifty API</name>
   <description>The API powering Thrifty.</description>
+  
+  <build>
+      <plugins>
+          <plugin>
+              <artifactId>maven-war-plugin</artifactId>
+              <groupId>org.apache.maven.plugins</groupId>
+              <version>2.3</version>
+              <configuration>
+                  <failOnMissingWebXml>false</failOnMissingWebXml>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
 </project>

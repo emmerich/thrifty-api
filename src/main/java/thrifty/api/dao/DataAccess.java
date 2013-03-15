@@ -1,5 +1,7 @@
 package thrifty.api.dao;
 
+import java.util.List;
+
 import thrifty.api.model.Entity;
 
 /**
@@ -20,7 +22,7 @@ public interface DataAccess {
 	 * Reads an Entity from the DB.
 	 * @param key the ID of the Entity to read.
 	 */
-	public void read(Integer key);
+	public Entity read(Integer key);
 	
 	/**
 	 * Updates an existing entity with the given newer
@@ -35,4 +37,6 @@ public interface DataAccess {
 	 * @param key the ID of the Entity to be deleted.
 	 */
 	public void delete(Integer key);
+	
+	public List<Entity> list();
 }

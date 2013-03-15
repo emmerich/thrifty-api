@@ -1,5 +1,7 @@
 package thrifty.api.service;
 
+import java.util.List;
+
 import thrifty.api.model.Entity;
 
 /**
@@ -22,7 +24,7 @@ public interface Service {
 	 * Performs logic prior to the reading of an Entity.
 	 * @param key the ID of the Entity about to be looked up.
 	 */
-	public void read(Integer key);
+	public Entity read(Integer key);
 	
 	/**
 	 * Performs logic prior to the updating of an Entity.
@@ -36,4 +38,6 @@ public interface Service {
 	 * @param key the ID of the entity about to be deleted.
 	 */
 	public void delete(Integer key);
+	
+	public List<Entity> list();
 }

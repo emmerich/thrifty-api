@@ -1,7 +1,7 @@
-package thrifty.api.crawler;
+package thrifty.api.provider;
 
 import thrifty.api.parser.Parseable;
 
-public interface ItemInfoProvider {
+public interface DataProvider {
 	public Parseable getItemInformation(String itemName);
 }
