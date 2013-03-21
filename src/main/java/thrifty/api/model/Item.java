@@ -19,6 +19,8 @@ public class Item extends PersistedEntity {
 	
 	private int itemCode;
 
+    private String name;
+
 	public Set<Availability> availability() {
 		return availability;
 	}
@@ -74,4 +76,12 @@ public class Item extends PersistedEntity {
 	public void itemCode(int itemCode) {
 		this.itemCode = itemCode;
 	}
+
+    public String name() {
+        return name;
+    }
+
+    public void name(String name) {
+        this.name = name;
+    }
 }
