@@ -1,0 +1,37 @@
+<beans xsi:schemaLocation="http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p">
+
+  <!-- Scans the classpath of this application for @Components to deploy as beans -->
+  <context:component-scan base-package="thrifty.api"/>
+
+  <!-- Configures the @Controller programming model -->
+  <mvc:annotation-driven/>
+
+  <bean id="thriftyDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="org.h2.Driver"/>
+    <property name="url" value="jdbc:h2:mem:thrifty;DB_CLOSE_DELAY=-1"/>
+  </bean>
+
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" p:dataSource-ref="thriftyDataSource">
+    <property name="dataSource" ref="thriftyDataSource"/>
+    <property name="persistenceUnitName" value="thrifty"/>
+    <property name="jpaVendorAdapter">
+      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="H2"/>
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+        <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+      </bean>
+    </property>
+  </bean>
+
+</beans>
