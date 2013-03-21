@@ -6,17 +6,36 @@
   <packaging>war</packaging>
   <name>Thrifty API</name>
   <description>The API powering Thrifty.</description>
+
+  <properties>
+    <org.hibernate.version>4.1.11.Final</org.hibernate.version>
+  </properties>
   
   <build>
-      <plugins>
-          <plugin>
-              <artifactId>maven-war-plugin</artifactId>
-              <groupId>org.apache.maven.plugins</groupId>
-              <version>2.3</version>
-              <configuration>
-                  <failOnMissingWebXml>false</failOnMissingWebXml>
-              </configuration>
-          </plugin>
-      </plugins>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>2.3</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
+
+  <dependencies>
+    <!-- Hibernate Dependencies -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${org.hibernate.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${org.hibernate.version}</version>
+    </dependency>
+  </dependencies>
 </project>
