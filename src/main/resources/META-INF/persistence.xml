@@ -6,9 +6,8 @@
 
   <persistence-unit name="thrifty.api">
 
-    <jta-data-source>thrifty</jta-data-source>
+    <!--<jta-data-source>thrifty</jta-data-source>-->
 
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <description>Persistence unit for the Thrifty API.</description>
 
     <properties>

@@ -4,6 +4,8 @@ import thrifty.api.model.Item;
 import thrifty.api.parser.Parseable;
 import thrifty.api.parser.Parser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +49,56 @@ public class WikiTextParser implements Parser {
         }
 
         return container.substring(startOfProperty, endOfProperty);
+    }
+
+    public Map<String, Integer> getStats(String container, String property) {
+        Map<String, Integer> result = new HashMap<String, Integer>();
+
+        String effectsStr = getProperty(container, property);
+
+        Pattern breakPattern = Pattern.compile("<.*>");
+        String htmlEscaped = breakPattern.matcher(effectsStr).replaceAll("");
+
+        String[] stats = htmlEscaped.split("]]");
+
+        for(String stat : stats) {
+            try {
+                result.putAll(parseStatistic(stat));
+            } catch(Exception e) {
+                System.out.println("Not a stat: " + stat);
+            }
+        }
+
+        return result;
+    }
+
+    public Map<String, Integer> parseStatistic(String stat) throws Exception {
+        Map<String, Integer> result = new HashMap<String, Integer>();
+
+        String[] components = stat.split("\\[\\[");
+
+        if(components.length == 2) {
+            try {
+                Integer value = Integer.parseInt(components[0].replace(" ", "").replace("%", "").replace("Unique:", ""));
+                String field = components[1];
+
+                if(isValidStat(field)) {
+                    result.put(field, value);
+                } else {
+                    throw new Exception("Not a stat");
+                }
+            } catch (NumberFormatException e) {
+                throw new Exception("Not a stat");
+            }
+        } else {
+            throw new Exception("Not a stat");
+        }
+
+        return result;
+    }
+
+    public boolean isValidStat(String field) {
+        return true;
     }
 
 

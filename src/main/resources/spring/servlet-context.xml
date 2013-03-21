@@ -17,7 +17,7 @@
   <mvc:annotation-driven/>
 
   <bean id="thriftyDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="org.h2.Driver"/>
+    <property name="driverClassName" value="org.h2.jdbcx.JdbcDataSource"/>
     <property name="url" value="jdbc:h2:mem:thrifty;DB_CLOSE_DELAY=-1"/>
   </bean>
 
