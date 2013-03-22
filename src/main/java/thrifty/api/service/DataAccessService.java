@@ -7,7 +7,7 @@ import thrifty.api.model.Entity;
 
 public class DataAccessService implements Service {
 	
-	private DataAccess dataAccess;
+	protected DataAccess dataAccess;
 
 	public void create(Entity creation) {
 		dataAccess.create(creation);

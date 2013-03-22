@@ -11,6 +11,7 @@
     <org.hibernate.version>4.1.11.Final</org.hibernate.version>
     <com.h2database.version>1.2.145</com.h2database.version>
     <org.springframework.version>3.2.2.RELEASE</org.springframework.version>
+    <com.fasterxml.jackson.version>2.1.2</com.fasterxml.jackson.version>
   </properties>
   
   <build>
@@ -20,9 +21,6 @@
         <artifactId>maven-war-plugin</artifactId>
         <groupId>org.apache.maven.plugins</groupId>
         <version>2.3</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -83,6 +81,19 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${org.springframework.version}</version>
+    </dependency>
+
+    <!-- Jackson for JSON Processing -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${com.fasterxml.jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${com.fasterxml.jackson.version}</version>
     </dependency>
   </dependencies>
 </project>

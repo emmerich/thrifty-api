@@ -2,6 +2,10 @@ package thrifty.api.controller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import thrifty.api.model.Entity;
 
 /**
@@ -10,6 +14,7 @@ import thrifty.api.model.Entity;
  * 
  * @author emmerich
  */
+@Controller
 public interface GETController {
 	
 	/**
@@ -17,6 +22,7 @@ public interface GETController {
 	 * @param id the ID to look up.
 	 * @return the Entity matching that ID.
 	 */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Entity get(Integer id);
 	
 	/**
@@ -25,5 +31,6 @@ public interface GETController {
 	 * 
 	 * @return all Entities handled by this Controller.
 	 */
+    @RequestMapping(method = RequestMethod.GET)
 	public List<Entity> list();
 }

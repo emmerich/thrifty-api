@@ -30,7 +30,7 @@ public interface DataAccess {
 	 * @param updated the Entity with the updated fields to 
 	 * be persisted
 	 */
-	public void update(Entity updated);
+	public Entity update(Entity updated);
 	
 	/**
 	 * Deletes an Entity from the DB.
