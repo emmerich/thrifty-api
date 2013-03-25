@@ -24,17 +24,17 @@
   <!-- Configures the @Controller programming model -->
   <mvc:annotation-driven />
 
-  <jee:jndi-lookup id="thriftyDataSource" jndi-name="java:jboss/datasources/thrifty" resource-ref="true" />
+  <jee:jndi-lookup id="thriftyDataSource" jndi-name="java:jdbc/datasources/thrifty" resource-ref="true" />
 
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="dataSource" ref="thriftyDataSource"/>
     <property name="persistenceUnitName" value="thrifty" />
     <property name="jpaVendorAdapter">
       <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="database" value="H2"/>
+        <property name="database" value="MYSQL"/>
         <property name="showSql" value="true"/>
         <property name="generateDdl" value="true"/>
-        <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+        <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>
       </bean>
     </property>
   </bean>

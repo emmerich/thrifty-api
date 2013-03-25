@@ -17,11 +17,11 @@ public class WikiaConnection implements UrlConnection {
 		
 	}
 
-	public String get(String item) {
+	public String get(String wikiPage) {
 		HttpURLConnection connection = null;
 		
 		try {
-			URL targetURL = new URL(constructURL(item));
+			URL targetURL = new URL(constructURL(wikiPage));
 			connection = getOpenURLConnection(targetURL);
 			String result = getStringFromOpenConnection(connection);
 			return result;
@@ -37,12 +37,12 @@ public class WikiaConnection implements UrlConnection {
 		return null;
 	}
 	
-	private String constructURL(String item) {
+	private String constructURL(String wikiPage) {
 		// format=json&action=query&titles=Infinity%20Edge&prop=revisions&rvprop=content
 		StringBuilder sb = new StringBuilder();
 		sb.append(WIKIA_URL);
 		sb.append("format=json&action=query&titles=");
-		sb.append(item);
+		sb.append(wikiPage);
 		sb.append("&prop=revisions&rvprop=content");
 		return sb.toString();
 	}

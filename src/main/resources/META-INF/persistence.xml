@@ -7,7 +7,7 @@
   <persistence-unit name="thrifty">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-    <non-jta-data-source>java:jboss/datasources/thrifty</non-jta-data-source>
+    <non-jta-data-source>java:jdbc/datasources/thrifty</non-jta-data-source>
 
     <class>thrifty.api.model.Item</class>
 
@@ -16,7 +16,7 @@
 
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
     </properties>
 
   </persistence-unit>
