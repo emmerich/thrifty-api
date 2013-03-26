@@ -4,17 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import thrifty.api.dao.patch.CurrentPatchDataAccess;
-import thrifty.api.model.patch.PatchNumber;
+import thrifty.api.dao.patch.PatchUpdateDataAccess;
+import thrifty.api.model.patch.PatchUpdate;
 
 @Controller
 @RequestMapping("/patch")
 public class PatchController {
 	
-	private CurrentPatchDataAccess currentPatchDataAccess;
+	private PatchUpdateDataAccess currentPatchDataAccess;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public PatchNumber get() {
-		return currentPatchDataAccess.currentPatch();
+	public PatchUpdate get() {
+		return currentPatchDataAccess.mostRecentPatch();
 	}
 }

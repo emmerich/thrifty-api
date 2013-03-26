@@ -12,6 +12,7 @@
     <com.h2database.version>1.2.145</com.h2database.version>
     <org.springframework.version>3.2.2.RELEASE</org.springframework.version>
     <com.fasterxml.jackson.version>2.1.2</com.fasterxml.jackson.version>
+    <org.mortbay.jetty.version>8.1.8.v20121106</org.mortbay.jetty.version>
   </properties>
   
   <build>
@@ -22,7 +23,27 @@
         <groupId>org.apache.maven.plugins</groupId>
         <version>2.3</version>
       </plugin>
+      
+      <plugin>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty-maven-plugin</artifactId>
+      <version>${org.mortbay.jetty.version}</version>
+      
+      <dependencies>
+        <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.9</version>
+        </dependency>
+      </dependencies>
+      
+      <configuration>
+        <jettyEnvXml>${basedir}/src/main/webapp/WEB-INF/jetty-env.xml</jettyEnvXml>
+      </configuration>
+    </plugin>
     </plugins>
+    
+    
   </build>
 
   <dependencies>
