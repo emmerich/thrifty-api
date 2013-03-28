@@ -1,4 +1,16 @@
-thrifty-api
+Thrifty API
 ===========
 
-API powering Thrifty. Crawls the LoL wikia for item information and offers it through a RESTful interface.
+The Thrifty API aims to provide a RESTful interface for accessing item data
+for League of Legends.
+
+It crawls the [League of Legends Wiki](http://www.leagueoflegends.wikia.com)
+for information about items, parses it, and provides an interface for accessing
+it.
+
+Environment Setup
+-----------------
+You need Maven. Checkout the project and run `mvn clean jetty:run`. I'll add
+documentation here about using JBoss and debugging with Jetty soon.
+
+
