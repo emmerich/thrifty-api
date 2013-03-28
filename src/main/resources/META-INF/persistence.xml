@@ -7,7 +7,7 @@
   <persistence-unit name="thrifty">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-    <non-jta-data-source>java:jdbc/datasources/thrifty</non-jta-data-source>
+    <non-jta-data-source>java:/jdbc/datasources/thrifty</non-jta-data-source>
 
     <class>thrifty.api.model.Item</class>
 

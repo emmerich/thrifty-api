@@ -6,9 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import thrifty.api.model.Entity;
 import thrifty.api.model.Item;
 
+@Transactional
+@Repository
 public abstract class JPAManagedDataAccess implements DataAccess {
 	
 	@PersistenceContext

@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import thrifty.api.model.Entity;
 import thrifty.api.service.Service;
 
-@Controller
-public class ServiceController implements GETController {
+public abstract class ServiceController implements GETController {
 	
 	protected Service service;
+	
+	public ServiceController(Service service) {
+		this.service = service;
+	}
 
     @Override
 	public @ResponseBody Entity get(@PathVariable("id") Integer id) {

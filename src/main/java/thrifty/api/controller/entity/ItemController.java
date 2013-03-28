@@ -13,6 +13,6 @@ public class ItemController extends ServiceController {
 
     @Autowired
     public ItemController(ItemService service) {
-        this.service = service;
+        super(service);
     }
 }

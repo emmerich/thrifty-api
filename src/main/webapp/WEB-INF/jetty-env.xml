@@ -5,7 +5,7 @@
 <Set name="contextPath">/thrifty</Set>
 <New id="thrifty" class="org.eclipse.jetty.plus.jndi.Resource">
  <Arg></Arg>
- <Arg>java:jdbc/datasources/thrifty</Arg>
+ <Arg>java:/jdbc/datasources/thrifty</Arg>
  <Arg>
     <New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
        <Set name="Url">jdbc:mysql://localhost:3306/thrifty</Set>

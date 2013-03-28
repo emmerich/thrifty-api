@@ -24,7 +24,7 @@
   <!-- Configures the @Controller programming model -->
   <mvc:annotation-driven />
 
-  <jee:jndi-lookup id="thriftyDataSource" jndi-name="java:jdbc/datasources/thrifty" resource-ref="true" />
+  <jee:jndi-lookup id="thriftyDataSource" jndi-name="java:/jdbc/datasources/thrifty" resource-ref="true" />
 
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="dataSource" ref="thriftyDataSource"/>

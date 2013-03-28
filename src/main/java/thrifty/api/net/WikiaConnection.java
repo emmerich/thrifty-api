@@ -53,6 +53,7 @@ public class WikiaConnection implements UrlConnection {
 		result.setRequestProperty("Content-Type", "application/json");
 		result.setRequestProperty("Content-Language", "en-US");
 		result.setUseCaches(false);
+		result.setDoOutput(true);
 		return result;
 	}
 	
