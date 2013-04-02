@@ -10,6 +10,7 @@
     <non-jta-data-source>java:/jdbc/datasources/thrifty</non-jta-data-source>
 
     <class>thrifty.api.model.Item</class>
+    <class>thrifty.api.model.effect.Statistic</class>
 
     <properties>
       <property name="jboss.as.jpa.providerModule" value="org.hibernate" />

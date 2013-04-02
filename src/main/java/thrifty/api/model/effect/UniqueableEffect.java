@@ -1,6 +1,10 @@
 package thrifty.api.model.effect;
 
-public abstract class UniqueableEffect implements Effect {
+import thrifty.api.model.PersistedEntity;
+
+import javax.persistence.MappedSuperclass;
+
+public abstract class UniqueableEffect extends PersistedEntity implements Effect {
 	
 	private boolean unique;
 

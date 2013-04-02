@@ -5,19 +5,19 @@ import thrifty.api.parser.Parseable;
 public class WikiaText implements Parseable {
 	
 	private String text;
-	private String itemName;
+	private String pageName;
 	
-	public WikiaText(String text, String itemName) {
+	public WikiaText(String text, String pageName) {
 		 this.text = text;
-		 this.itemName = itemName;
+		 this.pageName = pageName;
 	}
 
 	public String getStringValue() {
 		return text;
 	}
 	
-	public String getItemName() {
-		return itemName;
+	public String getPageName() {
+		return pageName;
 	}
 
 }

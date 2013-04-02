@@ -1,15 +1,22 @@
 package thrifty.api.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import thrifty.api.model.effect.Effect;
+import thrifty.api.model.effect.Statistic;
+import thrifty.api.model.effect.UniqueableEffect;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Entity;
 import javax.persistence.Transient;
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "item")
@@ -21,8 +28,9 @@ public class Item extends PersistedEntity {
     @Transient
 	private Tier tier;
 
-    @Transient
-	private Set<Effect> effects;
+    @JoinColumn
+    @OneToMany(cascade = CascadeType.ALL)
+	private Set<Statistic> statistics;
 
     @Transient
 	private List<Item> components;
@@ -39,12 +47,22 @@ public class Item extends PersistedEntity {
     @Column
     private String name;
 
+    public Item() {
+        statistics = new HashSet<Statistic>();
+        availability = new HashSet<Availability>();
+        components = new ArrayList<Item>();
+    }
+
+    public void addAvailability(Availability availability) {
+        this.availability.add(availability);
+    }
+
+    public void addStatistic(Set<Statistic> statistics) {
+        this.statistics.addAll(statistics);
+    }
+
 	public Set<Availability> availability() {
 		return availability;
-	}
-
-	public void availability(Set<Availability> availability) {
-		this.availability = availability;
 	}
 
 	public Tier tier() {
@@ -55,20 +73,12 @@ public class Item extends PersistedEntity {
 		this.tier = tier;
 	}
 
-	public Set<Effect> effects() {
-		return effects;
-	}
-
-	public void effects(Set<Effect> effects) {
-		this.effects = effects;
+	public Set<Statistic> statistics() {
+		return statistics;
 	}
 
 	public List<Item> components() {
 		return components;
-	}
-
-	public void components(List<Item> components) {
-		this.components = components;
 	}
 
 	public GoldValue cost() {
