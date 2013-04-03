@@ -26,13 +26,17 @@ public abstract class ItemParserImpl implements ItemParser {
     public Item toItem(Parseable parseableItem) {
         Item result = new Item();
 
-        result.name(parseableItem.getPageName());
-        result.addStatistic(statParser.extractStatisticSet(parseableItem));
-        result.addAvailability(availabilityParser.extractAvailabilitySet(parseableItem));
-        result.tier(tierParser.extractTier(parseableItem));
-        result.itemCode(itemCodeParser.extractItemCode(parseableItem));
-        result.sellValue(goldValueParser.extractSellValue(parseableItem));
-        result.cost(goldValueParser.extractCost(parseableItem));
+        try {
+            result.name(parseableItem.getPageName());
+            result.addStatistic(statParser.extractStatisticSet(parseableItem));
+            result.addAvailability(availabilityParser.extractAvailabilitySet(parseableItem));
+            result.tier(tierParser.extractTier(parseableItem));
+            result.itemCode(itemCodeParser.extractItemCode(parseableItem));
+            result.sellValue(goldValueParser.extractSellValue(parseableItem));
+            result.cost(goldValueParser.extractCost(parseableItem));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
         // auras, passives, actives
 

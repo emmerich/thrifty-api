@@ -51,23 +51,33 @@ public class WikiaStatParser implements StatParser<WikiaText> {
     public Set<Statistic> extractStatisticSet(WikiaText parseable) {
         Set<Statistic> result = new HashSet<Statistic>();
 
-        // Statistics are contained under the 'effects' key:
-        String effects = parseable.getProperty("effects");
+        try {
+            // Statistics are contained under the 'effects' key:
+            String effects = parseable.getProperty("effects");
 
-        // As this is wiki text, the pattern may contain some HTML that we don't want (such as breaks). Remove
-        // anything between <> tags
-        Pattern htmlPattern = Pattern.compile("<.*>");
-        effects = htmlPattern.matcher(effects).replaceAll("");
+            // As this is wiki text, the pattern may contain some HTML that we don't want (such as breaks). Remove
+            // anything between <> tags
+            Pattern htmlPattern = Pattern.compile("<.*>");
+            effects = htmlPattern.matcher(effects).replaceAll("");
 
-        // Our string will look something like this:
-        // +80 [[health]]+10 [[attack damage]]
-        // Split the string on ]], separating each stat
-        String[] individualStats = effects.split("]]");
+            // Our string will look something like this:
+            // +80 [[health]]+10 [[attack damage]]
+            // Split the string on ]], separating each stat
+            String[] individualStats = effects.split("]]");
 
-        // Now iterate over each stat, and extract the Statistic object from it
-        for(String individualStatString : individualStats) {
-            result.add(extractStatistic(individualStatString));
+            // Now iterate over each stat, and extract the Statistic object from it
+            for(String individualStatString : individualStats) {
+                Statistic stat = extractStatistic(individualStatString);
+
+                if(stat != null) {
+                    result.add(stat);
+                }
+            }
+        } catch(NoSuchFieldException e) {
+            // No such field might just mean this item has no effects, in which case return the empty set.
         }
+
+        System.out.println("Statistics: "  + result);
 
         return result;
     }

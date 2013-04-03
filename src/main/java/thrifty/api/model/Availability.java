@@ -1,7 +1,9 @@
 package thrifty.api.model;
 
+
 public enum Availability {
-	CRYSTAL_SCAR,
+	DOMINION,
 	SUMMONERS_RIFT,
-	TWISTED_TREELINE
+	TWISTED_TREELINE,
+    PROVING_GROUNDS
 }

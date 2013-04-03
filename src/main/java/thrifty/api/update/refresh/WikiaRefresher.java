@@ -34,7 +34,7 @@ public class WikiaRefresher implements Refresher {
 		for(String itemName : items) {
 			Parseable parseable = itemProvider.getItemInformation(itemName);
 			Item item = textParser.toItem(parseable);
-			itemDao.update(item);
+			itemDao.create(item);
 		}
 	}
 }

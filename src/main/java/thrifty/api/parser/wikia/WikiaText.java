@@ -30,19 +30,20 @@ public class WikiaText implements Parseable {
         return text.substring(startOfInfoBox, endOfInfoBox);
     }
 
-    public String getProperty(String propertyName) {
+    public String getProperty(String propertyName) throws NoSuchFieldException {
         String infoBox = getInfoBox();
 
-        int startOfProperty = infoBox.indexOf("|" + propertyName + " = ") + (propertyName.length() + 4);
-        int endOfProperty = startOfProperty;
+        Pattern startOfPropertyPattern = Pattern.compile(propertyName + ".*?=.*? ");
+        Matcher matcher = startOfPropertyPattern.matcher(infoBox);
 
-        Pattern nextPropertyPattern = Pattern.compile("\\|\\w* = ");
-        Matcher matcher = nextPropertyPattern.matcher(infoBox);
+        if(matcher.find()) {
+            int startOfProperty = matcher.end();
+            int endOfProperty = infoBox.indexOf("|", startOfProperty);
 
-        if(matcher.find(startOfProperty)) {
-            endOfProperty = matcher.start();
+            return infoBox.substring(startOfProperty, endOfProperty);
         }
 
-        return infoBox.substring(startOfProperty, endOfProperty);
+        System.out.println("No such field: " + propertyName + " on item: " + pageName);// + infoBox);
+        throw new NoSuchFieldException();
     }
 }

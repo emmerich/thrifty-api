@@ -11,6 +11,7 @@
 
     <class>thrifty.api.model.Item</class>
     <class>thrifty.api.model.effect.Statistic</class>
+    <class>thrifty.api.model.Availability</class>
 
     <properties>
       <property name="jboss.as.jpa.providerModule" value="org.hibernate" />

@@ -6,22 +6,29 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.management.jmx.TraceNotification;
-import thrifty.api.model.effect.*;
+import thrifty.api.model.effect.Active;
+import thrifty.api.model.effect.Aura;
+import thrifty.api.model.effect.Passive;
+import thrifty.api.model.effect.Statistic;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.Entity;
-import javax.persistence.Column;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 @Entity
 @Table(name = "item")
 public class Item extends PersistedEntity {
 
-    @Transient
+    @Column
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Availability.class)
 	private Set<Availability> availability;
 
     @Transient
