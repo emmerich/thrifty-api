@@ -1,7 +1,5 @@
 package thrifty.api.model;
 
-import org.hibernate.annotations.Type;
-
 public enum Stat {
 	ARMOR_PENETRATION,
 	ATTACK_DAMAGE,

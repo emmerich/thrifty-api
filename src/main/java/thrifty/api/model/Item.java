@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import thrifty.api.model.effect.Effect;
-import thrifty.api.model.effect.Statistic;
-import thrifty.api.model.effect.UniqueableEffect;
+import com.sun.management.jmx.TraceNotification;
+import thrifty.api.model.effect.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
@@ -28,9 +27,18 @@ public class Item extends PersistedEntity {
     @Transient
 	private Tier tier;
 
-    @JoinColumn
+    @JoinColumn(name = "itemId")
     @OneToMany(cascade = CascadeType.ALL)
 	private Set<Statistic> statistics;
+
+    @Transient
+    private Set<Active> actives;
+
+    @Transient
+    private Set<Aura> auras;
+
+    @Transient
+    private HashSet<Passive> passives;
 
     @Transient
 	private List<Item> components;
@@ -53,8 +61,8 @@ public class Item extends PersistedEntity {
         components = new ArrayList<Item>();
     }
 
-    public void addAvailability(Availability availability) {
-        this.availability.add(availability);
+    public void addAvailability(Set<Availability> availability) {
+        this.availability.addAll(availability);
     }
 
     public void addStatistic(Set<Statistic> statistics) {

@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import thrifty.api.net.WikiaConnection;
+import thrifty.api.parser.wikia.WikiaItemListParser;
 import thrifty.api.parser.wikia.WikiaText;
-import thrifty.api.parser.wikia.WikiaTextItemListParser;
-import thrifty.api.parser.wikia.WikiaTextItemParser;
 
 @Component
 public class WikiaItemListProvider implements ItemListProvider {
@@ -16,7 +15,7 @@ public class WikiaItemListProvider implements ItemListProvider {
 	private static final String ITEM_LIST_WIKI_PAGE = "Template:Items";
 
 	@Autowired
-	private WikiaTextItemListParser parser;
+	private WikiaItemListParser parser;
 
 	@Override
 	public List<String> getItemList() {

@@ -4,7 +4,7 @@ import thrifty.api.model.Item;
 
 import java.util.List;
 
-public interface ItemListParser {
-    public List<String> toItemList(Parseable parseableItemList);
+public interface ItemListParser<T extends Parseable> {
+    public List<String> toItemList(T parseableItemList);
 }
 

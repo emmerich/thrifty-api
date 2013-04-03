@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import thrifty.api.dao.entity.ItemDataAccess;
 import thrifty.api.model.Item;
 import thrifty.api.parser.Parseable;
-import thrifty.api.parser.wikia.WikiaTextItemParser;
+import thrifty.api.parser.wikia.WikiaItemParser;
 import thrifty.api.provider.item.WikiaItemProvider;
 import thrifty.api.provider.itemlist.WikiaItemListProvider;
 
@@ -22,7 +22,7 @@ public class WikiaRefresher implements Refresher {
 	private WikiaItemProvider itemProvider;
 	
 	@Autowired
-	private WikiaTextItemParser textParser;
+	private WikiaItemParser textParser;
 	
 	@Autowired
 	private ItemDataAccess itemDao;
