@@ -1,8 +1,12 @@
 package thrifty.api.parser;
 
+import org.apache.log4j.Logger;
 import thrifty.api.model.Item;
 
+
 public abstract class ItemParserImpl implements ItemParser {
+
+    private static final Logger LOG = Logger.getLogger(ItemParserImpl.class);
 
     private StatParser statParser;
     private AvailabilityParser availabilityParser;
@@ -24,6 +28,8 @@ public abstract class ItemParserImpl implements ItemParser {
 
     @Override
     public Item toItem(Parseable parseableItem) {
+        LOG.info("Getting item information for " + parseableItem.getPageName());
+
         Item result = new Item();
 
         try {

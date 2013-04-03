@@ -77,8 +77,6 @@ public class WikiaStatParser implements StatParser<WikiaText> {
             // No such field might just mean this item has no effects, in which case return the empty set.
         }
 
-        System.out.println("Statistics: "  + result);
-
         return result;
     }
 
@@ -94,7 +92,8 @@ public class WikiaStatParser implements StatParser<WikiaText> {
         if(components.length == 2) {
             // Extract the value. The value may be a percentage, so remove that
             // TODO(shall): Handle percentage values properly here
-            Integer value = Integer.parseInt(components[0].trim().replace("%", ""));
+            // TODO(shall): Handle unique values properly here
+            Integer value = Integer.parseInt(components[0].trim().replace("%", "").replace("+", "").replace("Unique: ", ""));
             String field = components[1];
 
             // Some people like to define user-friendly names for statistics like so:

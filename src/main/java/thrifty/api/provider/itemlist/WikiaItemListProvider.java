@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import thrifty.api.net.WikiaConnection;
 import thrifty.api.parser.wikia.WikiaItemListParser;
 import thrifty.api.parser.wikia.WikiaText;
+import thrifty.api.provider.blacklist.ItemBlacklistImpl;
 
 @Component
 public class WikiaItemListProvider implements ItemListProvider {
@@ -17,10 +18,15 @@ public class WikiaItemListProvider implements ItemListProvider {
 	@Autowired
 	private WikiaItemListParser parser;
 
+    @Autowired
+    private ItemBlacklistImpl blacklist;
+
 	@Override
 	public List<String> getItemList() {
 		WikiaConnection connection = new WikiaConnection();
-		return parser.toItemList(new WikiaText(connection.get(ITEM_LIST_WIKI_PAGE), ITEM_LIST_WIKI_PAGE));
+		List<String> list = parser.toItemList(new WikiaText(connection.get(ITEM_LIST_WIKI_PAGE), ITEM_LIST_WIKI_PAGE));
+        list.removeAll(blacklist.blacklist());
+        return list;
 	}
 
 }

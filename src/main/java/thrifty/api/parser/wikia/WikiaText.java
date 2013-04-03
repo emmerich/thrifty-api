@@ -43,7 +43,6 @@ public class WikiaText implements Parseable {
             return infoBox.substring(startOfProperty, endOfProperty);
         }
 
-        System.out.println("No such field: " + propertyName + " on item: " + pageName);// + infoBox);
-        throw new NoSuchFieldException();
+        throw new NoSuchFieldException("No such field: " + propertyName + " on item: " + pageName);
     }
 }
