@@ -15,6 +15,9 @@ public class ItemBlacklistImpl implements ItemBlacklist {
 
         blacklist.add("Bag of Tea");
         blacklist.add("Scroll of Teleportation");
+        blacklist.add("The Hex Core");
+        blacklist.add("Blue Pill");
+        blacklist.add("Stark's Fervor");
     }
 
     @Override
