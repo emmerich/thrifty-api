@@ -52,10 +52,10 @@ public class Item extends PersistedEntity {
 	private List<Item> components;
 
     @Transient
-	private GoldValue cost;
+	private int cost;
 
-    @Transient
-	private GoldValue sellValue;
+    @Column
+	private int sellValue;
 
     @Column
 	private int itemCode;
@@ -97,19 +97,19 @@ public class Item extends PersistedEntity {
 		return components;
 	}
 
-	public GoldValue cost() {
+	public int cost() {
 		return cost;
 	}
 
-	public void cost(GoldValue cost) {
+	public void cost(int cost) {
 		this.cost = cost;
 	}
 
-	public GoldValue sellValue() {
+	public int sellValue() {
 		return sellValue;
 	}
 
-	public void sellValue(GoldValue sellValue) {
+	public void sellValue(int sellValue) {
 		this.sellValue = sellValue;
 	}
 

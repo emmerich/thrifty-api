@@ -4,6 +4,10 @@ public class GoldValue {
 	
 	private int value;
 
+    public GoldValue(int value) {
+        this.value = value;
+    }
+
 	public int value() {
 		return value;
 	}
