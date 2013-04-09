@@ -36,8 +36,13 @@ public class WikiaItemListParser implements ItemListParser<WikiaText> {
 
         while(matcher.find()) {
             // u200e - UNICODE left-to-right mark
-            String item = matcher.group().replace("\n", "").replace("{{iio|", "").replace("}}", "");
-            LOG.info("Adding item " + item + " to set");
+            String item = matcher.group()
+                    .replace("\n", "")
+                    .replace("{{iio|", "")
+                    .replace("}}", "")
+                    .replaceAll("[\\\\]", "") // RTL Unicode character
+                    .replaceAll("u200e", "");
+
             items.add(item);
         }
 
