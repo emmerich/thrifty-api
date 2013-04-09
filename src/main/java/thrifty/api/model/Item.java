@@ -31,7 +31,8 @@ public class Item extends PersistedEntity {
     @ElementCollection(targetClass = Availability.class)
 	private Set<Availability> availability;
 
-    @Transient
+    @Column
+    @Enumerated(EnumType.STRING)
 	private Tier tier;
 
     @JoinColumn(name = "itemId")
