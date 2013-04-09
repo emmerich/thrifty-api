@@ -57,7 +57,7 @@ public class Item extends PersistedEntity {
     @Transient
 	private GoldValue sellValue;
 
-    @Transient
+    @Column
 	private int itemCode;
 
     @Column

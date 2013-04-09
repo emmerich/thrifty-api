@@ -85,6 +85,10 @@ public class WikiaText implements Parseable {
             if(text.charAt(i) == '|' && !areInLinkElement) {
                 return i;
             }
+
+            if(i == (text.length() - 1)) {
+                return i;
+            }
         }
 
         return -1;
