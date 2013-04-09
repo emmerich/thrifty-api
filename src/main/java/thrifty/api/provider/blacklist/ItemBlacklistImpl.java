@@ -19,6 +19,10 @@ public class ItemBlacklistImpl implements ItemBlacklist {
         blacklist.add("Blue Pill");
         blacklist.add("Stark's Fervor");
         blacklist.add("Head of Kha'Zix");
+
+        //TODO(shall): Don't ignore these in the final version
+        blacklist.add("Haunting Guise");
+        blacklist.add("Trinity Force");
     }
 
     @Override
