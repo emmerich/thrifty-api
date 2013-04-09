@@ -32,7 +32,12 @@ public class WikiaStatParser implements StatParser<WikiaText> {
         lookup.put("health regeneration", Stat.HEALTH_REGENERATION);
         lookup.put("health regen", Stat.HEALTH_REGENERATION);
         lookup.put("magic resistance", Stat.MAGIC_RESISTANCE);
+        lookup.put("magic resist", Stat.MAGIC_RESISTANCE);
         lookup.put("tenacity", Stat.TENACITY);
+
+        // Some Tenacity pages link like so: (see Cloak and Dagger)
+        lookup.put("tenacity (stat)", Stat.TENACITY);
+
         lookup.put("ability power", Stat.ABILITY_POWER);
         lookup.put("cooldown reduction", Stat.COOLDOWN_REDUCTION);
         lookup.put("magic penetration", Stat.MAGIC_PENETRATION);
