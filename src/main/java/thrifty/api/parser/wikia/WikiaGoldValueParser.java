@@ -32,7 +32,19 @@ public class WikiaGoldValueParser implements GoldValueParser<WikiaText> {
     }
 
     private int parseGoldValue(String v) {
-        String val = v.replace("g", "");
-        return Integer.parseInt(val);
+        String val = v.replace("g", "").replace(" ", "");
+
+
+        if(val.toLowerCase().contains("cannot")) {
+            // Items that cannot be sold
+            return -1;
+        } else {
+            try {
+                return Integer.parseInt(val);
+            } catch(NumberFormatException e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
     }
 }

@@ -23,6 +23,9 @@ public class WikiaItemListParser implements ItemListParser<WikiaText> {
 
         String wikiText = parseable.getStringValue();
 
+        // Everything after removed items we aren't interested in, so strip it down
+        wikiText = wikiText.substring(0, wikiText.indexOf("Removed items"));
+
         String itemPatternStr = "\\{\\{iio\\|[\\w '\\n\\\\]*}}";
         Pattern itemPattern = Pattern.compile(itemPatternStr);
         Matcher matcher = itemPattern.matcher(wikiText);

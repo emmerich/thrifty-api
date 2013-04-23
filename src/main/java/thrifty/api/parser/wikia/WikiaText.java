@@ -1,11 +1,13 @@
 package thrifty.api.parser.wikia;
 
+import org.apache.log4j.Logger;
 import thrifty.api.parser.Parseable;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WikiaText implements Parseable {
+    private static final Logger LOG = Logger.getLogger(WikiaText.class);
 	
 	private String text;
 	private String pageName;
@@ -24,7 +26,8 @@ public class WikiaText implements Parseable {
 	}
 
     public String getInfoBox() {
-        int startOfInfoBox = text.indexOf("{{infobox") + "{{infobox".length();
+        String infoBoxTag = text.indexOf("{{infobox") > 0 ? "{{infobox" : "{{Infobox";
+        int startOfInfoBox = text.indexOf(infoBoxTag) + infoBoxTag.length();
         int endOfInfoBox = getEndOfInfoBox(startOfInfoBox);
 
         return text.substring(startOfInfoBox, endOfInfoBox);
@@ -55,6 +58,8 @@ public class WikiaText implements Parseable {
     }
 
     public String getProperty(String propertyName) throws NoSuchFieldException {
+        LOG.debug("Getting property [" + propertyName + "] from page [" + pageName + "].");
+
         String infoBox = getInfoBox();
 
         Pattern startOfPropertyPattern = Pattern.compile(propertyName + ".*?=.*? ");

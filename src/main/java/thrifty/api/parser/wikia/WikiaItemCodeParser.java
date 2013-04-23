@@ -8,14 +8,14 @@ public class WikiaItemCodeParser implements ItemCodeParser<WikiaText> {
 
     @Override
     public int extractItemCode(WikiaText parseable) {
-        Integer result = null;
+        Integer result = 0;
 
         try {
             String code = parseable.getProperty("code");
             code = code.replaceAll("\\\\", "");
             result = Integer.parseInt(code);
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+            // Some items do not have an item code, and that's fine!
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
