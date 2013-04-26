@@ -12,4 +12,8 @@ public abstract class UniqueableEffect extends PersistedEntity implements Effect
 		return unique;
 	}
 
+    public void unique(boolean unique) {
+        this.unique = unique;
+    }
+
 }

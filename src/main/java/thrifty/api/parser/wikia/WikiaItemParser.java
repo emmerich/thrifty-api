@@ -12,7 +12,8 @@ public class WikiaItemParser extends ItemParserImpl {
                            WikiaAvailabilityParser availabilityParser,
                            WikiaTierParser tierParser,
                            WikiaItemCodeParser itemCodeParser,
-                           WikiaGoldValueParser goldValueParser) {
-        super(statParser, availabilityParser, tierParser, itemCodeParser, goldValueParser);
+                           WikiaGoldValueParser goldValueParser,
+                           WikiaPassiveParser passiveParser) {
+        super(statParser, availabilityParser, tierParser, itemCodeParser, goldValueParser, passiveParser);
     }
 }

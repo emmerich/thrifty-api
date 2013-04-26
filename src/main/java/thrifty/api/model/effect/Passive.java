@@ -1,14 +1,15 @@
 package thrifty.api.model.effect;
 
 public class Passive extends NamedEffect {
-	private Statistic modifier;
-	
-	public Statistic modifier() {
-		return modifier;
-	}
-	
-	public void modifier(Statistic modifier) {
-		this.modifier = modifier;
-	}
 
+    private String description;
+
+
+    public String description() {
+        return description;
+    }
+
+    public void description(String description) {
+        this.description = description;
+    }
 }

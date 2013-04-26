@@ -14,16 +14,20 @@ public abstract class ItemParserImpl implements ItemParser {
     private ItemCodeParser itemCodeParser;
     private GoldValueParser goldValueParser;
 
+    private PassiveParser passiveParser;
+
     public ItemParserImpl(StatParser statParser,
                           AvailabilityParser availabilityParser,
                           TierParser tierParser,
                           ItemCodeParser itemCodeParser,
-                          GoldValueParser goldValueParser) {
+                          GoldValueParser goldValueParser,
+                          PassiveParser passiveParser) {
         this.statParser = statParser;
         this.availabilityParser = availabilityParser;
         this.tierParser = tierParser;
         this.itemCodeParser = itemCodeParser;
         this.goldValueParser = goldValueParser;
+        this.passiveParser = passiveParser;
     }
 
     @Override
@@ -40,6 +44,8 @@ public abstract class ItemParserImpl implements ItemParser {
             result.itemCode(itemCodeParser.extractItemCode(parseableItem));
             result.sellValue(goldValueParser.extractSellValue(parseableItem));
             result.cost(goldValueParser.extractCost(parseableItem));
+
+            result.addPassive(passiveParser.extractPassiveSet(parseableItem));
         } catch(Exception e) {
             e.printStackTrace();
         }

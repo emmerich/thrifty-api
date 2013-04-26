@@ -46,7 +46,7 @@ public class Item extends PersistedEntity {
     private Set<Aura> auras;
 
     @Transient
-    private HashSet<Passive> passives;
+    private Set<Passive> passives;
 
     @Transient
 	private List<Item> components;
@@ -67,6 +67,7 @@ public class Item extends PersistedEntity {
         statistics = new HashSet<Statistic>();
         availability = new HashSet<Availability>();
         components = new ArrayList<Item>();
+        passives = new HashSet<Passive>();
     }
 
     public void addAvailability(Set<Availability> availability) {
@@ -75,6 +76,10 @@ public class Item extends PersistedEntity {
 
     public void addStatistic(Set<Statistic> statistics) {
         this.statistics.addAll(statistics);
+    }
+
+    public void addPassive(Set<Passive> passives) {
+        this.passives.addAll(passives);
     }
 
 	public Set<Availability> availability() {
