@@ -43,23 +43,7 @@ public class WikiaPassiveParser implements PassiveParser<WikiaText> {
                 // A unique Passive is typically formatted as such:
                 // Unique Passive - $NAME: $DESCRIPTION
                 // SEE: Trinity Force
-                if(caseInsensitive.contains("unique passive")) {
-                    LOG.debug("We are dealing with a passive in the form Unique Passive - $NAME: $DESCRIPTION");
-                    isUnique = true;
-
-                    // Unique Passive - $NAME:
-                    // Name is between the Unique Passive - and the :
-                    int endOfName = passive.indexOf(":");
-                    int startOfName = "Unique Passive - ".length();
-
-                    name = passive.substring(startOfName, endOfName);
-
-                    // Description is everything after the :
-                    description = passive.substring(endOfName + 1);
-
-                // UNIQUE: $DESCRIPTION
-                // SEE: Athene's Unholy Grail
-                } else if(caseInsensitive.contains("unique:")) {
+                if(caseInsensitive.contains("unique:") || caseInsensitive.contains("unique passive:")) {
                     LOG.debug("We are dealing with a passive in the form UNIQUE: $DESCRIPTION");
                     isUnique = true;
 
@@ -70,6 +54,22 @@ public class WikiaPassiveParser implements PassiveParser<WikiaText> {
                     // Description is everything after the :
                     description = passive.substring(passive.indexOf(":") + 1);
 
+                // UNIQUE: $DESCRIPTION
+                // SEE: Athene's Unholy Grail
+                } else if(caseInsensitive.contains("unique passive")) {
+                    LOG.debug("We are dealing with a passive in the form Unique Passive - $NAME: $DESCRIPTION");
+                    isUnique = true;
+
+                    // Unique Passive - $NAME:
+                    // Name is between the Unique Passive - and the :
+                    int endOfName = passive.indexOf(":");
+                    int startOfName = "Unique Passive - ".length();
+
+                    name = parseName(passive.substring(startOfName, endOfName));
+
+                    // Description is everything after the :
+                    description = passive.substring(endOfName + 1);
+
                 // UNIQUE - $NAME: $DESCRIPTION
                 // SEE: Athene's Unholy Grail
                 } else if(caseInsensitive.contains("unique - ")) {
@@ -79,22 +79,35 @@ public class WikiaPassiveParser implements PassiveParser<WikiaText> {
                     int startOfName = "unique - ".length();
                     int endOfName = passive.indexOf(":");
 
-                    name = passive.substring(startOfName, endOfName);
+                    name = parseName(passive.substring(startOfName, endOfName));
 
                     description = passive.substring(endOfName + 1);
 
                 // A non-unique Passive is usually:
                 // $DESCRIPTION
                 // SEE: Black Cleaver
+                } else if(caseInsensitive.contains("unique ")) {
+                    LOG.debug("We are dealing with a passive in the form Unique $NAME: $DESCRIPTION");
+
+                    isUnique = true;
+
+                    int startOfName = "unique ".length();
+                    int endOfName = passive.indexOf(":");
+
+                    name = parseName(passive.substring(startOfName, endOfName));
+
+                    description = passive.substring(endOfName + 1);
                 } else {
                     LOG.debug("We are dealing with a passive in the form $DESCRIPTION");
 
-                    // Null name and not unique already set, just grab the description.
+                    // not unique already set, just grab the description and name.
                     description = passive;
+
+                    name = parseable.getPageName();
                 }
 
                 // Take all html and links out of the description:
-                description = description.replaceAll("\\.|\\[\\[|]]", "");
+                description = description.replaceAll("\\[\\[", "").replaceAll("]]", "");
 
                 LOG.debug("Passive parsed with:" +
                         "\n\tName: " + name +
@@ -113,5 +126,18 @@ public class WikiaPassiveParser implements PassiveParser<WikiaText> {
 
 
         return result;
+    }
+
+    private String parseName(String name) {
+        if(name.contains("[[")) {
+            if(name.contains("|")) {
+                // We are in a link element, the text between the | and ]] is the name
+                return name.substring(name.indexOf("|") + 1, name.indexOf("]]"));
+            } else {
+                return name.substring(2, name.indexOf("]]"));
+            }
+        } else {
+            return name;
+        }
     }
 }

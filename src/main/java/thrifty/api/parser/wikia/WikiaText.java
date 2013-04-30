@@ -69,7 +69,7 @@ public class WikiaText implements Parseable {
             int startOfProperty = matcher.end();
             int endOfProperty = getEndOfProperty(infoBox, startOfProperty);
 
-            return infoBox.substring(startOfProperty, endOfProperty);
+            return infoBox.substring(startOfProperty, endOfProperty).replace("\\n", "");
         }
 
         throw new NoSuchFieldException("No such field: " + propertyName + " on item: " + pageName);
@@ -77,17 +77,26 @@ public class WikiaText implements Parseable {
 
     private int getEndOfProperty(String text, int startOfProperty) {
         boolean areInLinkElement = false;
+        boolean areInTemplateElement = false;
 
         for(int i = startOfProperty; i<text.length(); i++) {
             if(text.charAt(i) == '[' && text.charAt(i + 1)  == '[') {
                 areInLinkElement = true;
             }
 
+            if(text.charAt(i) == '{' && text.charAt(i + 1) == '{') {
+                areInTemplateElement = true;
+            }
+
             if(text.charAt(i) == ']' && text.charAt(i + 1) == ']') {
                 areInLinkElement = false;
             }
 
-            if(text.charAt(i) == '|' && !areInLinkElement) {
+            if(text.charAt(i) == '}' && text.charAt(i + 1) == '}') {
+                areInTemplateElement = false;
+            }
+
+            if(text.charAt(i) == '|' && !areInLinkElement && !areInTemplateElement) {
                 return i;
             }
 
